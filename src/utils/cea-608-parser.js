@@ -142,10 +142,10 @@ var specialCea608CharsCodes = {
 /**
  * Utils
  */
-var getCharForByte = function(byte) {
-    var charCode = byte;
-    if (specialCea608CharsCodes.hasOwnProperty(byte)) {
-        charCode = specialCea608CharsCodes[byte];
+var getCharForByte = function(byte_) {
+    var charCode = byte_;
+    if (specialCea608CharsCodes.hasOwnProperty(byte_)) {
+        charCode = specialCea608CharsCodes[byte_];
     }
     return String.fromCharCode(charCode);
 };
