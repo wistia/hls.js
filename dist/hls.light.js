@@ -3674,33 +3674,29 @@ var StreamController = function (_EventHandler) {
   }, {
     key: '_checkAppendedParsed',
     value: function _checkAppendedParsed() {
-      var _this3 = this;
-
       //trigger handler right now
       if (this.state === State.PARSED && (!this.appended || !this.pendingBuffering)) {
         var frag = this.fragCurrent;
         if (frag) {
-          (function () {
-            var media = _this3.mediaBuffer ? _this3.mediaBuffer : _this3.media;
-            _logger.logger.log('main buffered : ' + _timeRanges2.default.toString(media.buffered));
-            // filter potentially evicted bufferRange. this is to avoid memleak on live streams
-            var bufferRange = _this3.bufferRange.filter(function (range) {
-              return _bufferHelper2.default.isBuffered(media, (range.start + range.end) / 2);
-            });
-            // push new range
-            bufferRange.push({ type: frag.type, start: frag.startPTS, end: frag.endPTS, frag: frag });
-            // sort, as we use BinarySearch for lookup in getBufferRange ...
-            _this3.bufferRange = bufferRange.sort(function (a, b) {
-              return a.start - b.start;
-            });
-            _this3.fragPrevious = frag;
-            var stats = _this3.stats;
-            stats.tbuffered = performance.now();
-            // we should get rid of this.fragLastKbps
-            _this3.fragLastKbps = Math.round(8 * stats.total / (stats.tbuffered - stats.tfirst));
-            _this3.hls.trigger(_events2.default.FRAG_BUFFERED, { stats: stats, frag: frag, id: 'main' });
-            _this3.state = State.IDLE;
-          })();
+          var media = this.mediaBuffer ? this.mediaBuffer : this.media;
+          _logger.logger.log('main buffered : ' + _timeRanges2.default.toString(media.buffered));
+          // filter potentially evicted bufferRange. this is to avoid memleak on live streams
+          var bufferRange = this.bufferRange.filter(function (range) {
+            return _bufferHelper2.default.isBuffered(media, (range.start + range.end) / 2);
+          });
+          // push new range
+          bufferRange.push({ type: frag.type, start: frag.startPTS, end: frag.endPTS, frag: frag });
+          // sort, as we use BinarySearch for lookup in getBufferRange ...
+          this.bufferRange = bufferRange.sort(function (a, b) {
+            return a.start - b.start;
+          });
+          this.fragPrevious = frag;
+          var stats = this.stats;
+          stats.tbuffered = performance.now();
+          // we should get rid of this.fragLastKbps
+          this.fragLastKbps = Math.round(8 * stats.total / (stats.tbuffered - stats.tfirst));
+          this.hls.trigger(_events2.default.FRAG_BUFFERED, { stats: stats, frag: frag, id: 'main' });
+          this.state = State.IDLE;
         }
         this.tick();
       }
@@ -4444,24 +4440,22 @@ var Decrypter = function () {
         decryptor.expandKey(key);
         callback(decryptor.decrypt(data, 0, iv));
       } else {
-        (function () {
-          _logger.logger.log('WebCrypto AES decrypt');
-          var subtle = _this.subtle;
-          if (_this.key !== key) {
-            _this.key = key;
-            _this.fastAesKey = new _fastAesKey2.default(subtle, key);
-          }
+        _logger.logger.log('WebCrypto AES decrypt');
+        var subtle = this.subtle;
+        if (this.key !== key) {
+          this.key = key;
+          this.fastAesKey = new _fastAesKey2.default(subtle, key);
+        }
 
-          _this.fastAesKey.expandKey().then(function (aesKey) {
-            // decrypt using web crypto
-            var crypto = new _aesCrypto2.default(subtle, iv);
-            crypto.decrypt(data, aesKey).then(function (result) {
-              callback(result);
-            });
-          }).catch(function (err) {
-            _this.onWebCryptoError(err, data, key, iv, callback);
+        this.fastAesKey.expandKey().then(function (aesKey) {
+          // decrypt using web crypto
+          var crypto = new _aesCrypto2.default(subtle, iv);
+          crypto.decrypt(data, aesKey).then(function (result) {
+            callback(result);
           });
-        })();
+        }).catch(function (err) {
+          _this.onWebCryptoError(err, data, key, iv, callback);
+        });
       }
     }
   }, {
@@ -9663,15 +9657,13 @@ var MP4Remuxer = function () {
         // in order to avoid overflowing the 32 bit counter for large duration, we use smaller timescale (timescale/gcd)
         // we just need to ensure that AAC sample duration will still be an integer (will be 1024/gcd)
         if (audioTrack.timescale * audioTrack.duration > Math.pow(2, 32)) {
-          (function () {
-            var greatestCommonDivisor = function greatestCommonDivisor(a, b) {
-              if (!b) {
-                return a;
-              }
-              return greatestCommonDivisor(b, a % b);
-            };
-            audioTrack.timescale = audioTrack.audiosamplerate / greatestCommonDivisor(audioTrack.audiosamplerate, audioTrack.isAAC ? 1024 : 1152);
-          })();
+          var greatestCommonDivisor = function greatestCommonDivisor(a, b) {
+            if (!b) {
+              return a;
+            }
+            return greatestCommonDivisor(b, a % b);
+          };
+          audioTrack.timescale = audioTrack.audiosamplerate / greatestCommonDivisor(audioTrack.audiosamplerate, audioTrack.isAAC ? 1024 : 1152);
         }
         _logger.logger.log('audio mp4 timescale :' + audioTrack.timescale);
         if (!audioTrack.isAAC) {

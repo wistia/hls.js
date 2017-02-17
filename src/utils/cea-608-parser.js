@@ -142,10 +142,10 @@ var specialCea608CharsCodes = {
 /**
  * Utils
  */
-var getCharForByte = function(byte) {
-    var charCode = byte;
-    if (specialCea608CharsCodes.hasOwnProperty(byte)) {
-        charCode = specialCea608CharsCodes[byte];
+var getCharForByte = function(byte_) {
+    var charCode = byte_;
+    if (specialCea608CharsCodes.hasOwnProperty(byte_)) {
+        charCode = specialCea608CharsCodes[byte_];
     }
     return String.fromCharCode(charCode);
 };
@@ -360,17 +360,17 @@ class Row {
         this.chars[this.pos].setChar(' ', this.currPenState);
     }
 
-    insertChar(byte) {
-        if (byte >= 0x90) { //Extended char
+    insertChar(byte_) {
+        if (byte_ >= 0x90) { //Extended char
             this.backSpace();
         }
-        var char = getCharForByte(byte);
+        var char_ = getCharForByte(byte_);
         if (this.pos >= NR_COLS) {
-            logger.log('ERROR', 'Cannot insert ' + byte.toString(16) +
-                        ' (' + char + ') at position ' + this.pos + '. Skipping it!');
+            logger.log('ERROR', 'Cannot insert ' + byte_.toString(16) +
+                        ' (' + char_ + ') at position ' + this.pos + '. Skipping it!');
             return;
         }
-        this.chars[this.pos].setChar(char, this.currPenState);
+        this.chars[this.pos].setChar(char_, this.currPenState);
         this.moveCursor(1);
     }
 
@@ -395,11 +395,11 @@ class Row {
         var chars = [];
         var empty = true;
         for (var i = 0 ; i < NR_COLS ; i++) {
-            var char = this.chars[i].uchar;
-            if (char !== ' ') {
+            var char_ = this.chars[i].uchar;
+            if (char_ !== ' ') {
                 empty = false;
             }
-            chars.push(char);
+            chars.push(char_);
         }
         if (empty) {
             return '';
