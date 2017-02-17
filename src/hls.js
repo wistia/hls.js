@@ -333,4 +333,7 @@ class Hls {
   }
 }
 
+Hls.PlaylistLoader = PlaylistLoader;
+Hls.FragmentLoader = FragmentLoader;
+
 export default Hls;
