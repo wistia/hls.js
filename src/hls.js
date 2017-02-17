@@ -7,6 +7,7 @@ import Event from './events';
 import {ErrorTypes, ErrorDetails} from './errors';
 import PlaylistLoader from './loader/playlist-loader';
 import FragmentLoader from './loader/fragment-loader';
+import XhrLoader from './utils/xhr-loader';
 import KeyLoader from './loader/key-loader';
 
 import StreamController from  './controller/stream-controller';
@@ -335,5 +336,6 @@ class Hls {
 
 Hls.PlaylistLoader = PlaylistLoader;
 Hls.FragmentLoader = FragmentLoader;
+Hls.XhrLoader = XhrLoader;
 
 export default Hls;

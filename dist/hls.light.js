@@ -7656,6 +7656,10 @@ var _fragmentLoader = _dereq_(33);
 
 var _fragmentLoader2 = _interopRequireDefault(_fragmentLoader);
 
+var _xhrLoader = _dereq_(44);
+
+var _xhrLoader2 = _interopRequireDefault(_xhrLoader);
+
 var _keyLoader = _dereq_(34);
 
 var _keyLoader2 = _interopRequireDefault(_keyLoader);
@@ -8089,9 +8093,13 @@ var Hls = function () {
   return Hls;
 }();
 
+Hls.PlaylistLoader = _playlistLoader2.default;
+Hls.FragmentLoader = _fragmentLoader2.default;
+Hls.XhrLoader = _xhrLoader2.default;
+
 exports.default = Hls;
 
-},{"1":1,"10":10,"11":11,"25":25,"27":27,"33":33,"34":34,"35":35,"4":4,"42":42}],32:[function(_dereq_,module,exports){
+},{"1":1,"10":10,"11":11,"25":25,"27":27,"33":33,"34":34,"35":35,"4":4,"42":42,"44":44}],32:[function(_dereq_,module,exports){
 'use strict';
 
 // This is mostly for support of the es6 module export
