@@ -528,7 +528,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //import FetchLoader from './utils/fetch-loader';
 
-
 var hlsDefaultConfig = exports.hlsDefaultConfig = {
   autoStartLoad: true,
   startPosition: -1,

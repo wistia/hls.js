@@ -9,17 +9,6 @@ import CapLevelController from  './controller/cap-level-controller';
 import FPSController from './controller/fps-controller';
 import XhrLoader from './utils/xhr-loader';
 //import FetchLoader from './utils/fetch-loader';
-//#if altaudio
-import AudioTrackController from './controller/audio-track-controller';
-import AudioStreamController from  './controller/audio-stream-controller';
-//#endif
-
-//#if subtitle
-import Cues from './utils/cues';
-import TimelineController from './controller/timeline-controller';
-import SubtitleTrackController from './controller/subtitle-track-controller';
-import SubtitleStreamController from  './controller/subtitle-stream-controller';
-//#endif
 
 export var hlsDefaultConfig = {
       autoStartLoad: true,
@@ -73,18 +62,6 @@ export var hlsDefaultConfig = {
       bufferController: BufferController,
       capLevelController: CapLevelController,
       fpsController: FPSController,
-//#if altaudio
-      audioStreamController: AudioStreamController,
-      audioTrackController : AudioTrackController,
-//#endif
-//#if subtitle
-      subtitleStreamController: SubtitleStreamController,
-      subtitleTrackController: SubtitleTrackController,
-      timelineController: TimelineController,
-      cueHandler: Cues,
-      enableCEA708Captions: true,
-      enableWebVTT: true,
-//#endif
       stretchShortVideoTrack: false,
       forceKeyFrameOnDiscontinuity: true,
       abrEwmaFastLive: 3,
