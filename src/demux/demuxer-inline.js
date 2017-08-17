@@ -59,7 +59,7 @@ class DemuxerInline {
   pushDecrypted(data, initSegment, audioCodec, videoCodec, timeOffset, cc, level, sn, duration,accurateTimeOffset,defaultInitPTS) {
     var demuxer = this.demuxer;
     const id = this.id;
-    if (!demuxer || 
+    if (!demuxer ||
        // in case of continuity change, we might switch from content type (AAC container to TS container for example)
        // so let's check that current demuxer is still valid
         (cc !== this.cc && !this.probe(data))) {

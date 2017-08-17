@@ -78,7 +78,7 @@ import {ErrorTypes, ErrorDetails} from '../errors';
       }
     }
     /* refer to http://wiki.multimedia.cx/index.php?title=MPEG-4_Audio#Audio_Specific_Config
-        ISO 14496-3 (AAC).pdf - Table 1.13 — Syntax of AudioSpecificConfig()
+        ISO 14496-3 (AAC).pdf - Table 1.13 - Syntax of AudioSpecificConfig()
       Audio Profile / Audio Object Type
       0: Null
       1: AAC Main

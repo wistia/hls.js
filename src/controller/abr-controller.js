@@ -319,7 +319,7 @@ class AbrController extends EventHandler {
       if (adjustedbw > bitrate &&
       // fragment fetchDuration unknown OR live stream OR fragment fetchDuration less than max allowed fetch duration, then this level matches
       // we don't account for max Fetch Duration for live streams, this is to avoid switching down when near the edge of live sliding window ...
-        (!fetchDuration || live || fetchDuration < maxFetchDuration) ) {
+        (!fetchDuration || live || fetchDuration < maxFetchDuration) ) {
         // as we are looping from highest to lowest, this will return the best achievable quality level
 
         return i;

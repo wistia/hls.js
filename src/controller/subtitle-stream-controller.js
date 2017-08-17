@@ -95,7 +95,7 @@ class SubtitleStreamController extends EventHandler {
     };
 
     // Add all fragments that haven't been, aren't currently being and aren't waiting to be processed, to queue.
-    data.details.fragments.forEach(frag => {
+    data.details.fragments.forEach(frag => {
       if(!(alreadyProcessed(frag) || frag.sn === currentFragSN || alreadyInQueue(frag))) {
         // Frags don't know their subtitle track ID, so let's just add that...
         frag.trackId = data.id;

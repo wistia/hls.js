@@ -268,7 +268,7 @@ class AudioStreamController extends EventHandler {
               // offset should be within fragment boundary - config.maxFragLookUpTolerance
               // this is to cope with situations like
               // bufferEnd = 9.991
-              // frag[Ø] : [0,10]
+              // frag[0] : [0,10]
               // frag[1] : [10,20]
               // bufferEnd is within frag[0] range ... although what we are expecting is to return frag[1] here
               //              frag start               frag start+duration
@@ -812,7 +812,7 @@ class AudioStreamController extends EventHandler {
         break;
       case ErrorDetails.BUFFER_FULL_ERROR:
         // if in appending state
-        if (data.parent === 'audio' && (this.state === State.PARSING || this.state === State.PARSED)) {
+        if (data.parent === 'audio' && (this.state === State.PARSING || this.state === State.PARSED)) {
           const media = this.mediaBuffer,
                 currentTime = this.media.currentTime,
                 mediaBuffered = media && BufferHelper.isBuffered(media,currentTime) && BufferHelper.isBuffered(media,currentTime+0.5);

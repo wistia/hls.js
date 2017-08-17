@@ -377,7 +377,7 @@ class StreamController extends EventHandler {
       // offset should be within fragment boundary - config.maxFragLookUpTolerance
       // this is to cope with situations like
       // bufferEnd = 9.991
-      // frag[Ø] : [0,10]
+      // frag[0] : [0,10]
       // frag[1] : [10,20]
       // bufferEnd is within frag[0] range ... although what we are expecting is to return frag[1] here
       //              frag start               frag start+duration
@@ -885,7 +885,7 @@ class StreamController extends EventHandler {
 
     if (this.startFragRequested === false) {
     // compute start position if set to -1. use it straight away if value is defined
-      if (this.startPosition === -1 || this.lastCurrentTime === -1) {
+      if (this.startPosition === -1 || this.lastCurrentTime === -1) {
         // first, check if start time offset has been set in playlist, if yes, use this value
         let startTimeOffset = newDetails.startTimeOffset;
         if(!isNaN(startTimeOffset)) {
@@ -1269,7 +1269,7 @@ class StreamController extends EventHandler {
   }
 
   onError(data) {
-    let frag = data.frag || this.fragCurrent;
+    let frag = data.frag || this.fragCurrent;
     // don't handle frag error not related to main fragment
     if (frag && frag.type !== 'main') {
       return;
@@ -1353,7 +1353,7 @@ class StreamController extends EventHandler {
         break;
       case ErrorDetails.BUFFER_FULL_ERROR:
         // if in appending state
-        if (data.parent === 'main' && (this.state === State.PARSING || this.state === State.PARSED)) {
+        if (data.parent === 'main' && (this.state === State.PARSING || this.state === State.PARSED)) {
           // reduce max buf len if current position is buffered
           if (mediaBuffered) {
             this._reduceMaxBufferLength(this.config.maxBufferLength);
