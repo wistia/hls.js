@@ -1,6 +1,6 @@
 {
   "name": "hls.js",
-  "version": "0.7.0-minified-src-a",
+  "version": "0.7.0-minified",
   "license": "Apache-2.0",
   "description": "Media Source Extension - HLS library, by/for Dailymotion",
   "homepage": "https://github.com/dailymotion/hls.js",
@@ -12,7 +12,8 @@
   "bugs": {
     "url": "https://github.com/dailymotion/hls.js/issues"
   },
-  "main": "./src/index.js",
+  "main": "./dist/hls.js",
+  "module": "./src/hls.js",
   "private": false,
   "scripts": {
     "build": "npm run buildlib && rimraf dist/* && npm run builddist && npm run builddistlight",
@@ -59,9 +60,9 @@
     "opener": "^1.4.0",
     "parallelshell": "^2.0.0",
     "rimraf": "^2.5.1",
+    "selenium-webdriver": "^2.52.0",
     "uglify-js": "^2.7.5",
     "url-toolkit": "^1.0.10",
-    "selenium-webdriver": "^2.52.0",
     "watchify": "^3.7.0",
     "webworkify": "^1.4.0"
   }
