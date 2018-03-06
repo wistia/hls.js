@@ -1,6 +1,6 @@
 {
   "name": "hls.js",
-  "version": "0.7.0-minified",
+  "version": "0.7.0-minified-20180306",
   "license": "Apache-2.0",
   "description": "Media Source Extension - HLS library, by/for Dailymotion",
   "homepage": "https://github.com/dailymotion/hls.js",
@@ -64,6 +64,6 @@
     "uglify-js": "^2.7.5",
     "url-toolkit": "^1.0.10",
     "watchify": "^3.7.0",
-    "webworkify": "^1.4.0"
+    "webworkify": "^1.5.0"
   }
 }

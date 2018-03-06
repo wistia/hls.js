@@ -442,7 +442,7 @@ module.exports = function (fn, options) {
             wcache[key] = key;
         }
         sources[wkey] = [
-            Function(['require','module','exports'], '(' + fn + ')(self)'),
+            'function(require,module,exports){' + fn + '(self); }',
             wcache
         ];
     }
@@ -450,12 +450,11 @@ module.exports = function (fn, options) {
 
     var scache = {}; scache[wkey] = wkey;
     sources[skey] = [
-        Function(['require'], (
-            // try to call default if defined to also support babel esmodule
-            // exports
+        'function(require,module,exports){' +
+            // try to call default if defined to also support babel esmodule exports
             'var f = require(' + stringify(wkey) + ');' +
-            '(f.default ? f.default : f)(self);'
-        )),
+            '(f.default ? f.default : f)(self);' +
+        '}',
         scache
     ];
 
@@ -2819,7 +2818,7 @@ var StreamController = function (_EventHandler) {
         // offset should be within fragment boundary - config.maxFragLookUpTolerance
         // this is to cope with situations like
         // bufferEnd = 9.991
-        // frag[Ø] : [0,10]
+        // frag[0] : [0,10]
         // frag[1] : [10,20]
         // bufferEnd is within frag[0] range ... although what we are expecting is to return frag[1] here
         //              frag start               frag start+duration
@@ -4745,7 +4744,7 @@ var ADTS = function () {
         }
       }
       /* refer to http://wiki.multimedia.cx/index.php?title=MPEG-4_Audio#Audio_Specific_Config
-          ISO 14496-3 (AAC).pdf - Table 1.13 — Syntax of AudioSpecificConfig()
+          ISO 14496-3 (AAC).pdf - Table 1.13 - Syntax of AudioSpecificConfig()
         Audio Profile / Audio Object Type
         0: Null
         1: AAC Main
@@ -7694,7 +7693,7 @@ var Hls = function () {
     key: 'version',
     get: function get() {
       // replaced with browserify-versionify transform
-      return '0.7.0';
+      return '0.7.0-minified';
     }
   }, {
     key: 'Events',
