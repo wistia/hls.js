@@ -113,5 +113,6 @@
     "webpack-dev-server": "3.11.2",
     "webpack-merge": "5.7.3",
     "webworkify-webpack": "wistia/webworkify-webpack#refs/heads/master"
-  }
+  },
+  "version": "1.0.1"
 }
