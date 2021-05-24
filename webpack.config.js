@@ -13,10 +13,12 @@ const addEMESupport = !!env.EME_DRM || !!env.USE_EME_DRM;
 
 const createDefinePlugin = (type) => {
   const buildConstants = {
+    // WISTIA HLS CHANGE: we don't ever want to compile the subtitles or
+    // drm stuff because we don't use it
     __VERSION__: JSON.stringify(pkgJson.version),
-    __USE_SUBTITLES__: JSON.stringify(type === 'main' || addSubtitleSupport),
+    __USE_SUBTITLES__: false,
     __USE_ALT_AUDIO__: JSON.stringify(type === 'main' || addAltAudioSupport),
-    __USE_EME_DRM__: JSON.stringify(type === 'main' || addEMESupport),
+    __USE_EME_DRM__: false,
   };
   return new webpack.DefinePlugin(buildConstants);
 };
