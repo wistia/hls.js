@@ -120,6 +120,17 @@ const baseConfig = {
   },
 };
 
+function getAliasesForMainDist() {
+  return {
+    './controller/abr-controller': './empty.js',
+    './controller/eme-controller': './empty.js',
+    './controller/subtitle-stream-controller': './empty.js',
+    './controller/subtitle-track-controller': './empty.js',
+    './controller/timeline-controller': './empty.js',
+    './utils/cues': './empty.js',
+  };
+}
+
 function getAliasesForLightDist() {
   let aliases = {};
 
@@ -178,6 +189,9 @@ const multiConfig = [
       libraryTarget: 'umd',
       libraryExport: 'default',
       globalObject: 'this',
+    },
+    resolve: {
+      alias: getAliasesForMainDist(),
     },
     plugins: mainPlugins,
     devtool: 'source-map',
