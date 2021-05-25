@@ -120,7 +120,7 @@ const baseConfig = {
   },
 };
 
-function getAliasesForMainDist() {
+function getAliasesForMainAndDebugDist() {
   return {
     './controller/abr-controller': './empty.js',
     './controller/eme-controller': './empty.js',
@@ -160,6 +160,8 @@ function getAliasesForLightDist() {
 }
 
 const multiConfig = [
+  //  Wistia Note: the debug package is the one that is
+  //  actually included when we install via npm
   {
     name: 'debug',
     mode: 'development',
@@ -173,6 +175,9 @@ const multiConfig = [
       libraryTarget: 'umd',
       libraryExport: 'default',
       globalObject: 'this', // https://github.com/webpack/webpack/issues/6642#issuecomment-370222543
+    },
+    resolve: {
+      alias: getAliasesForMainAndDebugDist(),
     },
     plugins: mainPlugins,
     devtool: 'source-map',
@@ -191,7 +196,7 @@ const multiConfig = [
       globalObject: 'this',
     },
     resolve: {
-      alias: getAliasesForMainDist(),
+      alias: getAliasesForMainAndDebugDist(),
     },
     plugins: mainPlugins,
     devtool: 'source-map',
