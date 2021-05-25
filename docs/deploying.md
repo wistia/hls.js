@@ -24,7 +24,7 @@ The release message should try and document all the big changes that have happen
 * BREAKING:
   * Now only supports dog videos
 
-https://github.com/wistia/hls.js/compare/v1.2.3...v1.2.4
+https://github.com/wistia/hls.js/compare/v1.2.3-1...v1.2.4-1
 
 ```
 
