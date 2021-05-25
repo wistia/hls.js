@@ -19,6 +19,6 @@ https://classic.yarnpkg.com/en/docs/cli/unlink
 
 1. stop your player-modern server and the hls.js server
 1. run `yarn unlink @wistia/hls.js` from player-modern
-   2.1 you could also run `yarn unlink` from this repository
+   1. you could also run `yarn unlink` from this repository
 1. run `yarn` in player-modern before restarting
-   3.1 if you get compilation errors you may need to run `yarn install --force`
+   1. if you get compilation errors you may need to run `yarn install --force`
