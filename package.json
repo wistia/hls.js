@@ -112,7 +112,7 @@
     "webpack-cli": "4.7.0",
     "webpack-dev-server": "3.11.2",
     "webpack-merge": "5.7.3",
-    "webworkify-webpack": "wistia/webworkify-webpack#refs/heads/master"
+    "webworkify-webpack": "2.1.5"
   },
   "version": "1.0.4-3"
 }
